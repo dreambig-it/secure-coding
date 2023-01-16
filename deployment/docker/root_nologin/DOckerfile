@@ -1,0 +1,14 @@
+FROM ubuntu:latest
+
+LABEL maintainer="p4nth3r-5237"
+ENV HOME /home/bob
+# not from this the user will be bob
+USER bob
+ENV DEBIAN_FRONTEND=noninteractive
+RUN groupadd -r bob && useradd -r -g bob bob
+
+# setting root user as nologin, no one can get root access
+RUN chsh -s /usr/sbin/nologin root
+# some more configuration below according to your requirements
+chown -R www-data:www-data /var/www/html
+# Environment variable
